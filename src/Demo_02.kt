@@ -66,17 +66,5 @@ fun demo_02(input: String): Int {
         }
         points += currentPoints
     }
-
-    val scratchcard = ".*:(.*)\\|(.*)".toRegex()
-
-    fun Set<String>.powTwoMinusOne(): Int = if (isNotEmpty()) (2.0).pow(size - 1).toInt() else 0
-    fun <R> MatchResult.Destructured.map(transform: (String) -> R) = toList().map(transform)
-
-    return input.lines().sumOf { line ->
-        scratchcard.find(line)
-            ?.destructured
-            ?.map { it.split(" ").filter { it.isNotBlank() }.toSet() }
-            ?.let { (winning, all) -> winning.intersect(all).powTwoMinusOne() }
-            ?: 0
-    }
+    return points
 }
